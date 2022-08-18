@@ -29,7 +29,7 @@ const services = [
   { title: "Menoy-back Guarantee!", path: "/rules" },
   { title: "Blog", path: "/location" },
   { title: "Accessibility", path: "/delivery" },
-  { title: "Contact", path: "/contact" },
+  { title: "Contact", path: "/contacts" },
 ];
 
 function Footer() {

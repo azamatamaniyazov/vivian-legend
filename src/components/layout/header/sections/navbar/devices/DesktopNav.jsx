@@ -55,7 +55,9 @@ function DesktopNav() {
             </span>
           </li>
           <li className="py-5">
-            <span className="cursor-pointer mx-3 xl:mx-5">Contact</span>
+            <Link to={"/contacts"} className="cursor-pointer mx-3 xl:mx-5">
+              Contact
+            </Link>
           </li>
         </ul>
         <span>Free shipping on all orders over $100</span>

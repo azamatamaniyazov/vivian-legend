@@ -10,7 +10,7 @@ function ShoppingCart() {
       <div className="py-[54px]">
         <div className="grid grid-cols-12 gap-4">
           {/* CART TABLE */}
-          <div className="col-span-9 border border-gray-300 overflow-auto h-fit">
+          <div className="col-span-12 lg:col-span-9 border border-gray-300 overflow-auto h-fit">
             <table>
               <thead className="text-base">
                 <tr>
@@ -90,7 +90,7 @@ function ShoppingCart() {
             </table>
           </div>
           {/* CART TOTAL */}
-          <div className="col-span-3 border border-gray-300 p-[30px]">
+          <div className="col-span-12 lg:col-span-3 border border-gray-300 p-5 xl:p-[30px]">
             <h3 className="text-lg font-medium mb-4">Cart Total</h3>
             <ul className="mb-6">
               <li className="flex justify-between w-full mb-[15px] text-[#9c9c9c]">
@@ -110,7 +110,7 @@ function ShoppingCart() {
                 <span>$240.00</span>
               </li>
             </ul>
-            <button className="w-full py-3 px-5 bg-orange text-white">
+            <button className="w-full py-3 px-3 xl:px-5 bg-orange text-white">
               Proceed to checkout
             </button>
           </div>

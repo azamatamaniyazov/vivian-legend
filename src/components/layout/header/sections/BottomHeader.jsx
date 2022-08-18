@@ -17,7 +17,7 @@ function BottomHeader() {
         <input
           className="h-[50px] w-full mb-5 lg:mb-0 py-2 px-5 border border-orange outline-none rounded"
           type="search"
-          placeholder="search"
+          placeholder="Search Products..."
         />
         <button className="flex items-center absolute text-white bg-orange py-2.5 px-2 rounded top-1 right-1">
           <FiSearch />

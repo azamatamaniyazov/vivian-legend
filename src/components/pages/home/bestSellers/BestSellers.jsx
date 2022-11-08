@@ -4,42 +4,22 @@ import { Navigation } from "swiper";
 import { useRef } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import useSlidesView from "../../../../hooks/useSlidesView";
-
-const bestSellersProducts = [
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-1.jpg",
-    title: "Cordless Drill Professional Combo Drill And Screwdriver",
-    price: "200.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-9.jpg",
-    title: "Power Tools Set Chinese Manufacturer Production 50V",
-    price: "150.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-7.jpg",
-    title: "Professional Cordless Drill Power Tools Competitive",
-    price: "130.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-8.jpg",
-    title: "DFMALB 20V Max XX Oscillating Multi Tool Variable Speed Tool",
-    price: "190.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-6.jpg",
-    title: "Cordless Drill Professional Combo Drill And Screwdriver",
-    price: "200.00",
-  },
-];
+import { useSelector } from "react-redux";
 
 function BestSellers() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const { slidesView } = useSlidesView(4);
+  const { products } = useSelector((state) => state.products);
+
+  const bestSellers = [...products]
+    .sort((a, b) => b.point - a.point)
+    .slice(0, 10);
+  console.log(bestSellers);
+
   return (
     <div className="relative pb-12">
-      <h2 className="text-2xl font-medium mb-5">Best Sellers</h2>
+      <h2 className="text-2xl font-medium mb-5">Хит Продаж</h2>
       <div className="absolute bottom-0 right-0 left-0 lg:top-0 lg:bottom-auto flex justify-center lg:justify-end cursor-pointer ">
         <div
           ref={prevRef}
@@ -66,7 +46,7 @@ function BestSellers() {
         }}
         className="mySwiper mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 xl:grid-cols-3"
       >
-        {bestSellersProducts.map((elem, index) => {
+        {bestSellers.map((elem, index) => {
           return (
             <SwiperSlide key={index}>
               <ProductCard {...elem} display={true} />

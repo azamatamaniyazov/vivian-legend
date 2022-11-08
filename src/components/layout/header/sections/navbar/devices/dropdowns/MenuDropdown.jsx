@@ -24,7 +24,7 @@ function MenuDropdown() {
           <ul>
             <li>
               <Link
-                to="/tools"
+                to="/"
                 className="block pl-9 pr-3 py-3 hover:text-orange transition-colors border-b border-[#dbeefd]"
               >
                 Home

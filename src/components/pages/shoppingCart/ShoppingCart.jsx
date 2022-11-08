@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
+import { getViewBasket } from "../../../api/auth/auth";
 
 function ShoppingCart() {
   const [count, setCount] = useState(1);
+
+  console.log(getViewBasket());
 
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">

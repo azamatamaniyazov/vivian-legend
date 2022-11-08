@@ -7,10 +7,17 @@ import {
   FaTelegramPlane,
   FaTwitter,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 function ProductDetails() {
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(true);
+  const product = useSelector((state) =>
+    state.products.products.filter(
+      (item) => item.id == localStorage.getItem("productId")
+    )
+  );
+
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">
       {/* WRAPPER */}
@@ -18,14 +25,14 @@ function ProductDetails() {
         <div className="lg:grid grid-cols-10 gap-x-9 items-center justify-center">
           <div className="mb-4 col-span-4 p-1 lg:p-6 bg-[#eeeeee]">
             <img
-              src="https://templates.envytheme.com/ehay/default/assets/images/products/product-4.jpg"
+              src={product[0] && product[0].image}
               alt="product"
               className="w-full"
             />
           </div>
           <div className="col-span-5">
             <h3 className="text-xl font-medium mb-3">
-              Cordless Drill Professional Combo Drill And Screwdriver
+              {product[0] && product[0].name}
             </h3>
             <ul className="text-orange flex mb-[10px]">
               <li>
@@ -48,7 +55,9 @@ function ProductDetails() {
               </li>
             </ul>
             <div className="my-[10px]">
-              <span className="text-orange text-[18px] mr-2">$119.00</span>
+              <span className="text-orange text-[18px] mr-2">
+                UZS {product[0] && product[0].price}
+              </span>
               <span className="text-green-500 text-sm">In Stock (8 items)</span>
             </div>
             <p className="text-[#9c9c9c] mb-3 leading-[1.8]">

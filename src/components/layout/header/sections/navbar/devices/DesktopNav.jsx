@@ -21,7 +21,7 @@ function DesktopNav() {
         <div className="flex items-center text-orange">
           <RiMenuLine size={20} />
           <span className="ml-2 uppercase text-sm xl:text-base">
-            all categories
+            все категории
           </span>
         </div>
         <RiArrowDropDownLine size={20} className="text-orange" />
@@ -33,31 +33,25 @@ function DesktopNav() {
         <ul className="flex">
           <li className="py-5">
             <Link to="/" className="cursor-pointer mr-3 xl:mr-5">
-              Home
+              Главная
             </Link>
           </li>
-          <li className="py-5">
+          {/* <li className="py-5">
             <span className="cursor-pointer mx-3 xl:mx-5">
               Shop
               <RiArrowDropDownLine size={25} className="inline" />
             </span>
+          </li> */}
+          <li className="py-5">
+            <span className="cursor-pointer mx-3 xl:mx-5">Каталог</span>
           </li>
           <li className="py-5">
-            <span className="cursor-pointer mx-3 xl:mx-5">
-              Pages
-              <RiArrowDropDownLine size={25} className="inline" />
-            </span>
-          </li>
-          <li className="py-5">
-            <span className="cursor-pointer mx-3 xl:mx-5">
-              Blog
-              <RiArrowDropDownLine size={25} className="inline" />
-            </span>
-          </li>
-          <li className="py-5">
-            <Link to={"/contacts"} className="cursor-pointer mx-3 xl:mx-5">
-              Contact
+            <Link to={"contact"} className="cursor-pointer mx-3 xl:mx-5">
+              Контакты
             </Link>
+          </li>
+          <li className="py-5">
+            <span className="cursor-pointer mx-3 xl:mx-5">О компании</span>
           </li>
         </ul>
         <span>Free shipping on all orders over $100</span>

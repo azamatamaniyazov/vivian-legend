@@ -1,36 +1,27 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlineViewWeek,
   MdViewList,
 } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../../../slices/categorySlice";
 import ProductCard from "../../productCard/ProductCard";
-
-const Products = [
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-3.jpg",
-    title: "Power Tools Set Chinese Manufacturer Production 50V",
-    price: "150.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-7.jpg",
-    title: "Professional Cordless Drill Power Tools Competitive",
-    price: "130.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-8.jpg",
-    title: "DFMALB 20V Max XX Oscillating Multi Tool Variable Speed Tool",
-    price: "190.00",
-  },
-  {
-    img: "https://templates.envytheme.com/ehay/default/assets/images/products/product-6.jpg",
-    title: "Cordless Drill Professional Combo Drill And Screwdriver",
-    price: "200.00",
-  },
-];
 
 function ProductsPage() {
   const [displayIsBlock, setDisplayIsBlock] = useState(true);
+  const { products } = useSelector((state) => state.products);
+  const { categories, categoryId } = useSelector((state) => state.category);
+  const dispatch = useDispatch();
+
+  const onSelectCategoryId = (id) => {
+    dispatch(setCategoryId(id));
+  };
+
+  const productsByCategory = products.filter(
+    (item) => item.category_id === categoryId
+  );
 
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">
@@ -41,26 +32,20 @@ function ProductsPage() {
           <div className="col-span-12 lg:col-span-4 h-max border border-gray-300">
             <h3 className="text-xl font-medium p-6">Product Categories</h3>
             <ul>
-              <li className="flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300">
-                <MdOutlineKeyboardArrowRight size={20} />
-                <span>Power tools</span>
-              </li>
-              <li className="flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300">
-                <MdOutlineKeyboardArrowRight size={20} />
-                <span>Hand tools</span>
-              </li>
-              <li className="flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300">
-                <MdOutlineKeyboardArrowRight size={20} />
-                <span>Cordless tools</span>
-              </li>
-              <li className="flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300">
-                <MdOutlineKeyboardArrowRight size={20} />
-                <span>Safety tools</span>
-              </li>
-              <li className="flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300">
-                <MdOutlineKeyboardArrowRight size={20} />
-                <span>Garden tools</span>
-              </li>
+              {categories.map((item) => {
+                return (
+                  <li
+                    onClick={() => onSelectCategoryId(item.id)}
+                    key={item.id}
+                    className={`${
+                      categoryId === item.id && "text-orange"
+                    } flex items-center cursor-pointer hover:text-orange transition-colors py-[10px] px-5 border-t border-gray-300`}
+                  >
+                    <MdOutlineKeyboardArrowRight size={20} />
+                    <span>{item.name}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           {/* PRODUCTS BLOCK */}
@@ -94,7 +79,7 @@ function ProductsPage() {
             </div>
             {/* PRODUCTS LIST*/}
             <div className="grid grid-cols-12 gap-5 py-6">
-              {Products.map((item, index) => {
+              {productsByCategory.map((item, index) => {
                 return (
                   <div
                     key={index}

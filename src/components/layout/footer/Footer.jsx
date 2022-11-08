@@ -12,6 +12,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
+  FaTelegram,
 } from "react-icons/fa";
 
 const info = [
@@ -29,7 +30,7 @@ const services = [
   { title: "Menoy-back Guarantee!", path: "/rules" },
   { title: "Blog", path: "/location" },
   { title: "Accessibility", path: "/delivery" },
-  { title: "Contact", path: "/contacts" },
+  { title: "Contact", path: "/contact" },
 ];
 
 function Footer() {
@@ -124,6 +125,14 @@ function Footer() {
                       className="hover:text-orange"
                     >
                       <FaTwitter size={15} />
+                    </a>
+                  </li>
+                  <li className="mr-2">
+                    <a
+                      href="https://www.facebook.com/"
+                      className="hover:text-orange"
+                    >
+                      <FaTelegram size={15} />
                     </a>
                   </li>
                 </ul>

@@ -2,7 +2,7 @@ import { TiLocationOutline } from "react-icons/ti";
 import { FiPhone } from "react-icons/fi";
 import { BiMailSend, BiTime } from "react-icons/bi";
 
-function Contacts() {
+function Contact() {
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">
       <div className="grid grid-cols-12 py-[54px]">
@@ -76,4 +76,4 @@ function Contacts() {
   );
 }
 
-export default Contacts;
+export default Contact;

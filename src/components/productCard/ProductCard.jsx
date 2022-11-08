@@ -5,10 +5,19 @@ import {
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { setProductId } from "../pages/products/productsSlice";
 
-function ProductCard({ img, title, price, display }) {
+function ProductCard({ id, name, image, price, display }) {
+  const dispatch = useDispatch();
+
+  const onSelectProductId = (id) => {
+    dispatch(setProductId(id));
+    localStorage.setItem("productId", id);
+  };
   return (
     <div
+      onClick={() => onSelectProductId(id)}
       className={`${
         !display && "flex items-center "
       } block hover:border-orange transition-colors relative border border-gray-300`}
@@ -18,9 +27,11 @@ function ProductCard({ img, title, price, display }) {
         className="w-full overflow-hidden hover:opacity-75"
       >
         <img
-          src={img}
+          src={image}
           alt="tool"
-          className="w-full h-full object-center object-cover"
+          className={`w-full h-[304px] object-center object-contain ${
+            !display && " h-[189px] w-[189px]"
+          }`}
         />
       </Link>
       <div
@@ -29,7 +40,7 @@ function ProductCard({ img, title, price, display }) {
         } border-t border-gray-300`}
       >
         <h3 className="mb-3">
-          <Link to="/product-details">{title}</Link>
+          <Link to="/product-details">{name}</Link>
         </h3>
         <ul className="text-orange flex mb-[10px]">
           <li>
@@ -56,7 +67,7 @@ function ProductCard({ img, title, price, display }) {
             </Link>
           </li>
         </ul>
-        <span className="text-orange font-medium">${price}</span>
+        <span className="text-orange font-medium">UZS {price}</span>
         <div className="flex items-center mt-2">
           <button
             className={`${

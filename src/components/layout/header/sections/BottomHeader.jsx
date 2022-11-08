@@ -3,13 +3,10 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 function BottomHeader() {
   return (
-    <div className="flex flex-col items-center lg:grid lg:grid-cols-3 py-[15px]">
+    <div className="flex flex-col items-center lg:grid lg:grid-cols-3 py-2">
       {/* LOGO */}
       <Link to="/" className="hidden lg:block">
-        <img
-          src="https://templates.envytheme.com/ehay/default/assets/images/logo.png"
-          alt="logo"
-        />
+        <img src="http://vivian-legend.uz/frontas/images/logo.png" alt="logo" />
       </Link>
 
       {/* SEARCH INPUT */}
@@ -17,11 +14,11 @@ function BottomHeader() {
         <input
           className="h-[50px] w-full mb-5 lg:mb-0 py-2 px-5 border border-orange outline-none rounded"
           type="search"
-          placeholder="Search Products..."
+          placeholder="Искать..."
         />
         <button className="flex items-center absolute text-white bg-orange py-2.5 px-2 rounded top-1 right-1">
           <FiSearch />
-          <span className="ml-1">Search</span>
+          <span className="ml-1">Поиск</span>
         </button>
       </div>
 
@@ -36,9 +33,11 @@ function BottomHeader() {
           </div>
           <div>
             <span className="text-[#9c9c9c]">
-              Favorite
+              Избранное
               <br />
-              <span className="text-[#111111] font-semibold">My Wishlist</span>
+              <span className="text-[#111111] font-semibold">
+                Список желаний
+              </span>
             </span>
           </div>
         </div>
@@ -53,7 +52,7 @@ function BottomHeader() {
           </div>
           <div>
             <span className="text-[#9c9c9c]">
-              Your Cart:
+              Корзина:
               <br />
               <span className="text-[#111111] font-semibold">$00.00</span>
             </span>

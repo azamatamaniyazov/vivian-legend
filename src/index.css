@@ -4,7 +4,7 @@
 @import-normalize;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap");
-
+/* w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3 */
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;

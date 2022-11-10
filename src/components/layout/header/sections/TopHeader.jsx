@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 function TopHeader() {
+  const auth = useAuth();
   return (
     <div className="py-4 flex flex-col lg:flex-row justify-between items-center">
       <ul className="flex flex-wrap items-center justify-center px-2">
@@ -15,18 +17,18 @@ function TopHeader() {
         </li>
       </ul>
       <ul className="flex items-center">
-        <li className="text-[#555555] cursor-pointer mr-3 pr-3 border-r-2 border-gray-300 hover:text-orange">
-          <Link to={"user"}>My Acoount</Link>
+        <li className="cursor-pointer mr-3 pr-3 border-r-2 border-gray-300 hover:text-orange">
+          <Link to={"user"}>{auth.isAuth ? "Мой Профиль" : "Войти"}</Link>
         </li>
-        <li className="mr-3 pr-3 border-r-2 border-gray-300">
-          {/* <select
+        {/* <li className="mr-3 pr-3 border-r-2 border-gray-300">
+          <select
             name="currency"
             className="outline-none uppercase cursor-pointer"
           >
             <option value="usd">usd</option>
             <option value="euro">euro</option>
-          </select> */}
-        </li>
+          </select>
+        </li> */}
         <li>
           <select name="lang" className="outline-none cursor-pointer">
             <option value="en">English</option>

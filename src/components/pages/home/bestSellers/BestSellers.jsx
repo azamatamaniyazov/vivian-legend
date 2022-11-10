@@ -15,7 +15,6 @@ function BestSellers() {
   const bestSellers = [...products]
     .sort((a, b) => b.point - a.point)
     .slice(0, 10);
-  console.log(bestSellers);
 
   return (
     <div className="relative pb-12">

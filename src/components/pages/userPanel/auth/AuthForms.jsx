@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../../../../api/auth/auth";
-import useAuth from "../../../../hooks/useAuth";
+import { setUser } from "../../../../slices/userSlice";
 
 function AuthForms() {
   const {
     register,
     formState: { errors },
     reset,
-    getValues,
-    setValue,
     handleSubmit,
   } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState(null);
-  const auth = useAuth();
+  const dispatch = useDispatch();
 
   const onLogin = async (data) => {
     try {
       setIsLoading(true);
       const { data: loginData } = await login(data);
-      auth.setToken(loginData.payload.token);
-      auth.setUser(loginData.payload.user);
+      dispatch(setUser(loginData.payload));
+      localStorage.setItem("token", loginData.payload.token);
       reset();
       setLoginError(null);
     } catch (e) {
       if (e.response.status === 401) {
         setLoginError("вы не зарегистрированы");
-        console.log(loginError);
       }
     } finally {
       setIsLoading(false);

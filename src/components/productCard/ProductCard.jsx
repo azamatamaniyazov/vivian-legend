@@ -7,13 +7,19 @@ import {
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { setProductId } from "../pages/products/productsSlice";
+import { useAddToBasketMutation } from "../../api/apiSlice";
 
 function ProductCard({ id, name, image, price, display }) {
   const dispatch = useDispatch();
+  const [addToBasket] = useAddToBasketMutation();
 
   const onSelectProductId = (id) => {
     dispatch(setProductId(id));
     localStorage.setItem("productId", id);
+  };
+
+  const onAddToBasket = () => {
+    addToBasket({ product_id: id, count: 1 });
   };
   return (
     <div
@@ -70,11 +76,12 @@ function ProductCard({ id, name, image, price, display }) {
         <span className="text-orange font-medium">UZS {price}</span>
         <div className="flex items-center mt-2">
           <button
+            onClick={onAddToBasket}
             className={`${
               display
                 ? "py-[10px] px-2 lg:px-4 2xl:px-5 "
                 : "text-[13px] py-[8px] px-2 "
-            } flex items-center text-[#9c9c9c] border border-gray-300`}
+            } flex items-center text-[#9c9c9c] border border-gray-300 hover:text-white hover:bg-orange`}
           >
             <RiShoppingCartLine size={17} className="mr-2" />
             <span className="whitespace-nowrap">Add To Cart</span>

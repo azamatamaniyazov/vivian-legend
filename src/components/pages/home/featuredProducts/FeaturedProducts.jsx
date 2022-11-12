@@ -33,6 +33,7 @@ function FeaturedProducts() {
       </div>
       <Swiper
         slidesPerView={slidesView}
+        speed={800}
         spaceBetween={20}
         modules={[Navigation]}
         onInit={(swiper) => {

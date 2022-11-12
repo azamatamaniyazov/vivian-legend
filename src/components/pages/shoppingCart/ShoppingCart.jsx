@@ -2,7 +2,8 @@ import { useGetViewBasketQuery } from "../../../api/apiSlice";
 import CartItem from "./CartItem";
 
 function ShoppingCart() {
-  const { data: basket } = useGetViewBasketQuery();
+  const { data: basket, isSuccess } = useGetViewBasketQuery();
+  const { orders, id } = isSuccess && basket.payload;
 
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">
@@ -10,40 +11,46 @@ function ShoppingCart() {
         <div className="grid grid-cols-12 gap-4">
           {/* CART TABLE */}
           <div className="col-span-12 lg:col-span-9 border border-gray-300 overflow-auto h-fit">
-            <table>
-              <thead className="text-base">
-                <tr>
-                  <th className="table-cell py-5 px-[30px] font-medium">
-                    Продукт
-                  </th>
-                  <th className="table-cell py-5 px-[30px] font-medium"></th>
-                  <th className="table-cell py-5 px-[30px] font-medium">
-                    Цена
-                  </th>
-                  <th className="table-cell py-5 px-[30px] font-medium">
-                    Количество
-                  </th>
-                  <th className="table-cell py-5 px-[30px] font-medium">
-                    Сумма
-                  </th>
-                  <th className="table-cell py-5 px-[30px] font-medium">
-                    Удалить
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {basket &&
-                  basket.payload.orders.map((item, i) => {
+            {orders?.length > 0 ? (
+              <table>
+                <thead className="text-base">
+                  <tr>
+                    <th className="table-cell py-5 px-[30px] font-medium">
+                      Продукт
+                    </th>
+                    <th className="table-cell py-5 px-[30px] font-medium"></th>
+                    <th className="table-cell py-5 px-[30px] font-medium">
+                      Цена
+                    </th>
+                    <th className="table-cell py-5 px-[30px] font-medium">
+                      Количество
+                    </th>
+                    <th className="table-cell py-5 px-[30px] font-medium">
+                      Сумма
+                    </th>
+                    <th className="table-cell py-5 px-[30px] font-medium">
+                      Удалить
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((item, i) => {
                     return (
                       <CartItem
                         key={i}
                         {...item}
-                        basketId={basket.payload.id}
+                        basketId={id}
+                        // onDeleteProduct={onDeleteProduct}
                       />
                     );
                   })}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            ) : (
+              <p className="text-center py-2">
+                Пока Вы ничего не добавили в корзину :(
+              </p>
+            )}
           </div>
           {/* CART TOTAL */}
           <div className="col-span-12 lg:col-span-3 border border-gray-300 p-5 xl:p-[30px] h-max">

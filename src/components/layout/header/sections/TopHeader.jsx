@@ -4,7 +4,7 @@ import useAuth from "../../../../hooks/useAuth";
 function TopHeader() {
   const auth = useAuth();
   return (
-    <div className="py-4 flex flex-col lg:flex-row justify-between items-center">
+    <div className="pt-4 flex flex-col lg:flex-row justify-between items-center">
       <ul className="flex flex-wrap items-center justify-center px-2">
         <li className="text-[#555555] cursor-pointer mr-1.5 mb-2 pr-1.5 md:border-r-2 md:mr-3 md:mb-0 md:pr-3 border-gray-300 hover:text-orange">
           About

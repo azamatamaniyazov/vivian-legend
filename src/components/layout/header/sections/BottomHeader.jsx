@@ -1,7 +1,10 @@
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useGetViewBasketQuery } from "../../../../api/apiSlice";
 function BottomHeader() {
+  const { data: basket, isSuccess } = useGetViewBasketQuery();
+  const { orders, total_sum } = isSuccess && basket.payload;
   return (
     <div className="flex flex-col items-center lg:grid lg:grid-cols-3 py-2">
       {/* LOGO */}
@@ -47,14 +50,16 @@ function BottomHeader() {
           <div className="relative flex justify-center items-center h-12 w-12 mr-3 rounded-full bg-[#fff1e8]">
             <FiShoppingCart size={26} className="text-orange" />
             <span className="absolute text-[12px] text-white text-center font-semibold h-[18px] w-[18px] rounded-full bg-orange top-0 -right-1">
-              0
+              {orders ? orders.length : 0}
             </span>
           </div>
           <div>
             <span className="text-[#9c9c9c]">
               Корзина:
               <br />
-              <span className="text-[#111111] font-semibold">$00.00</span>
+              <span className="text-[#111111] font-semibold">
+                {total_sum ? total_sum : 0} UZS
+              </span>
             </span>
           </div>
         </Link>

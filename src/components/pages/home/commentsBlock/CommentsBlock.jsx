@@ -11,11 +11,12 @@ function CommentsBlock() {
       <h2 className="text-2xl font-medium mb-5">Customer Comment</h2>
       <Swiper
         slidesPerView={slidesView}
+        speed={900}
         grabCursor={true}
         spaceBetween={20}
         loop={true}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}

@@ -20,15 +20,29 @@ export const apiSlice = createApi({
     getAllProducts: builder.query({
       query: () => "/products",
     }),
+    registration: builder.mutation({
+      query: (user) => ({
+        url: "/register",
+        method: "POST",
+        body: user,
+      }),
+    }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: "/login",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getMe: builder.query({
+      query: () => "/getme",
+    }),
     getViewBasket: builder.query({
       query: () => ({
         url: "/baskets/demo",
         method: "GET",
       }),
       providesTags: ["Basket"],
-    }),
-    getMe: builder.query({
-      query: () => "/getme",
     }),
     addToBasket: builder.mutation({
       query: (data) => ({
@@ -46,10 +60,10 @@ export const apiSlice = createApi({
       invalidatesTags: ["Basket"],
     }),
     updateOrder: builder.mutation({
-      query: ({ basketId, order_id, quantity }) => ({
+      query: ({ basketId, order_id, count }) => ({
         url: `baskets/${basketId}/${order_id}`,
         method: "PATCH",
-        body: { count: quantity },
+        body: { count },
       }),
       invalidatesTags: ["Basket"],
     }),
@@ -59,6 +73,8 @@ export const apiSlice = createApi({
 export const {
   useGetCategoriesQuery,
   useGetAllProductsQuery,
+  useRegistrationMutation,
+  useLoginMutation,
   useGetViewBasketQuery,
   useGetMeQuery,
   useAddToBasketMutation,

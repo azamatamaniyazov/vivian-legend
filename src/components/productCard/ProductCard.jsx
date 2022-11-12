@@ -46,7 +46,9 @@ function ProductCard({ id, name, image, price, display }) {
         } border-t border-gray-300`}
       >
         <h3 className="mb-3">
-          <Link to="/product-details">{name}</Link>
+          <Link to="/product-details" className="hover:text-orange">
+            {name}
+          </Link>
         </h3>
         <ul className="text-orange flex mb-[10px]">
           <li>

@@ -15,7 +15,7 @@ function DesktopNav() {
     <div className="hidden lg:flex">
       {/* CATEGORY */}
       <button
-        className="category relative flex justify-between items-center bg-white w-[220px] xl:w-80 py-5 px-2 xl:px-6"
+        className="category relative flex justify-between items-center bg-white w-[220px] xl:w-80 py-6 px-2 xl:px-6"
         onClick={categoryToggler}
       >
         <div className="flex items-center text-orange">
@@ -36,12 +36,6 @@ function DesktopNav() {
               Главная
             </Link>
           </li>
-          {/* <li className="py-5">
-            <span className="cursor-pointer mx-3 xl:mx-5">
-              Shop
-              <RiArrowDropDownLine size={25} className="inline" />
-            </span>
-          </li> */}
           <li className="py-5">
             <span className="cursor-pointer mx-3 xl:mx-5">Каталог</span>
           </li>

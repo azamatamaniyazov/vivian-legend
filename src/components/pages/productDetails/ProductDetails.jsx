@@ -8,15 +8,30 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useAddToBasketMutation } from "../../../api/apiSlice";
 
 function ProductDetails() {
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(true);
+  const [addToBasket] = useAddToBasketMutation();
   const product = useSelector((state) =>
     state.products.products.filter(
       (item) => item.id == localStorage.getItem("productId")
     )
   );
+
+  const onChangeCount = (type) => {
+    if (type === "inc") {
+      setCount(count + 1);
+    }
+    if (type === "dec") {
+      count <= 1 ? setCount(1) : setCount(count - 1);
+    }
+  };
+
+  const onAddToBasket = () => {
+    product[0] && addToBasket({ product_id: product[0].id, count });
+  };
 
   return (
     <div className="w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1176px] 2xl:w-[1320px] mx-auto px-3">
@@ -70,7 +85,7 @@ function ProductDetails() {
               <div className="flex items-center">
                 <div className="mr-3 text-center inline-flex items-center relative">
                   <span
-                    onClick={() => setCount(count - 1)}
+                    onClick={() => onChangeCount("dec")}
                     className="cursor-pointer absolute text-xl text-[#9c9c9c] left-2.5 w-[30px] h-[30px] leading-[30px] bg-[#ddd] border border-gray-300 rounded-full hover:bg-orange hover:border-orange hover:text-white transition-colors"
                   >
                     -
@@ -82,13 +97,16 @@ function ProductDetails() {
                     className="text-center font-medium outline-0 border border-gray-300 max-w-[130px] h-12"
                   />
                   <span
-                    onClick={() => setCount(count + 1)}
+                    onClick={() => onChangeCount("inc")}
                     className="cursor-pointer absolute text-xl text-[#9c9c9c] right-2.5 w-[30px] h-[30px] leading-[30px] bg-[#ddd] border border-gray-300 rounded-full hover:bg-orange hover:border-orange hover:text-white transition-colors"
                   >
                     +
                   </span>
                 </div>
-                <button className="flex items-center bg-orange text-white p-3 mr-3">
+                <button
+                  onClick={onAddToBasket}
+                  className="flex items-center bg-orange text-white p-3 mr-3"
+                >
                   <RiShoppingCartLine size={17} className="mr-2" />
                   <span className="whitespace-nowrap">Add To Cart</span>
                 </button>

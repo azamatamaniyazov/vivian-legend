@@ -1,5 +1,5 @@
 import useAuth from "../../../hooks/useAuth";
-import AuthForms from "./auth/AuthForms";
+import AuthForms from "./AuthForms/AuthForms";
 import Dashboard from "./dashboard/Dashboard";
 
 function UserPanel() {

@@ -1,10 +1,32 @@
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetMeQuery } from "../../../../api/apiSlice";
+import { getme } from "../../../../api/auth/auth";
 import { removeUser } from "../../../../slices/userSlice";
 
 function Dashboard() {
-  const { data: user, isSuccess } = useGetMeQuery();
+  // const { data: user, isSuccess } = useGetMeQuery();
+  const { token } = useSelector((state) => state.user);
+  const [userData, setUserData] = useState();
+  const [isSuccess, setIsSucces] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      getMeQuery();
+    }
+  }, [token]);
+
+  const getMeQuery = async () => {
+    try {
+      const { data } = await getme(token);
+      setUserData(data);
+      setIsSucces(true);
+    } catch (e) {
+      setIsSucces(false);
+    }
+  };
 
   const onLogOut = () => {
     dispatch(removeUser());
@@ -51,13 +73,13 @@ function Dashboard() {
                     />
                     <div>
                       <h3 className="text-xl mb-2 font-medium">
-                        {user.payload.name}
+                        {userData.payload.name}
                       </h3>
                       <span className="block text-[#9c9c9c] mb-[5px]">
                         contact@mail.ru
                       </span>
                       <span className="text-[#9c9c9c]">
-                        {user.payload.phone}
+                        {userData.payload.phone}
                       </span>
                     </div>
                   </div>
@@ -69,16 +91,18 @@ function Dashboard() {
                   <h3 className="text-xl font-medium mb-5">Адрес</h3>
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-[#9c9c9c] mb-2">{user.payload.name}</p>
+                      <p className="text-[#9c9c9c] mb-2">
+                        {userData.payload.name}
+                      </p>
                       <p className="text-[#9c9c9c]">
                         <span className="text-black pr-2">Адрес:</span>
-                        {user.payload.address}
+                        {userData.payload.address}
                       </p>
                     </div>
                     <div>
                       <p className="text-[#9c9c9c] mb-2">
                         <span className="text-black pr-2">Номер:</span>
-                        {user.payload.phone}
+                        {userData.payload.phone}
                       </p>
                       <p className="text-[#9c9c9c]">
                         <span className="text-black pr-2">Почта:</span>

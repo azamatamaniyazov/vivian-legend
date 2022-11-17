@@ -26,7 +26,7 @@ function BottomHeader() {
       </div>
 
       <div className="flex justify-end">
-        {/* FAVORITE PRODUCTS*/}
+        {/* FAVORITE PRODUCTS ELEMENT*/}
         <div className="favorite  flex items-center mr-7">
           <div className="relative flex justify-center items-center h-12 w-12 mr-3 rounded-full bg-[#fff1e8]">
             <MdFavoriteBorder size={26} className="text-orange" />
@@ -45,7 +45,7 @@ function BottomHeader() {
           </div>
         </div>
 
-        {/* CART PRODUCTS*/}
+        {/* CART PRODUCTS ELEMENT*/}
         <Link to={"/shopping-cart"} className="cart flex items-center">
           <div className="relative flex justify-center items-center h-12 w-12 mr-3 rounded-full bg-[#fff1e8]">
             <FiShoppingCart size={26} className="text-orange" />
